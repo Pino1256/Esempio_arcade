@@ -228,10 +228,10 @@ class MyGame(arcade.Window):
             self.keys_pressed['up'] = True
         elif key in [arcade.key.DOWN, arcade.key.S]:
             self.keys_pressed['down'] = True
-        elif key in [arcade.key.LEFT, arcade.key.A]:
-            self.keys_pressed['righttttttttttt'] = True
-        elif key in [arcade.key.RIGHT, arcade.key.D]:
-            self.keys_pressed['left'] = False
+        elif key in [arcade.key.LEFT, arcade.key.D]:
+            self.keys_pressed['right'] = True
+        elif key in [arcade.key.RIGHT, arcade.key.A]:
+            self.keys_pressed['left'] = True
         
         self.update_velocity()
             
@@ -241,10 +241,10 @@ class MyGame(arcade.Window):
             self.keys_pressed['up'] = False
         elif key in [arcade.key.DOWN, arcade.key.S]:
             self.keys_pressed['down'] = False
-        elif key in [arcade.key.LEFT, arcade.key.A]:
+        elif key in [arcade.key.LEFT, arcade.key.D]:
             self.keys_pressed['right'] = False
-        elif key in [arcade.key.RIGHT, arcade.key.D]:
-            self.keys_pressed['left'] = True
+        elif key in [arcade.key.RIGHT, arcade.key.A]:
+            self.keys_pressed['left'] = False
         
         self.update_velocity()
 
