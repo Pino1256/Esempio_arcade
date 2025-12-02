@@ -87,7 +87,7 @@ class MyGame(arcade.Window):
         self.speed = 200
         self.velocity_x = 0
         self.velocity_y = 0
-        self.health = 3
+        self.health = 0
         self.alive = True
         
         # Input tracking per controlli più fluidi
@@ -156,6 +156,16 @@ class MyGame(arcade.Window):
         # TODO 2: Mostra "GAME OVER" quando il giocatore muore
         # Suggerimento: Controlla se il giocatore è vivo, poi usa arcade.draw_text
         # per mostrare "GAME OVER" al centro dello schermo in rosso e grassetto
+
+        if self.health == 0:
+            arcade.draw_text(
+                "GAME OVER!",
+                SCREEN_HEIGHT / 2.3,
+                SCREEN_WIDTH / 2.8,
+                arcade.color.RED, 
+                40,
+                bold=True
+            )
     
     def update_velocity(self):
         """Aggiorna la velocità in base ai tasti premuti"""
@@ -234,9 +244,9 @@ class MyGame(arcade.Window):
             self.keys_pressed['up'] = True
         elif key in [arcade.key.DOWN, arcade.key.S]:
             self.keys_pressed['down'] = True
-        elif key in [arcade.key.LEFT, arcade.key.D]:
+        elif key in [arcade.key.RIGHT, arcade.key.D]:
             self.keys_pressed['right'] = True
-        elif key in [arcade.key.RIGHT, arcade.key.A]:
+        elif key in [arcade.key.LEFT, arcade.key.A]:
             self.keys_pressed['left'] = True
         
         self.update_velocity()
@@ -247,9 +257,9 @@ class MyGame(arcade.Window):
             self.keys_pressed['up'] = False
         elif key in [arcade.key.DOWN, arcade.key.S]:
             self.keys_pressed['down'] = False
-        elif key in [arcade.key.LEFT, arcade.key.D]:
+        elif key in [arcade.key.RIGHT, arcade.key.D]:
             self.keys_pressed['right'] = False
-        elif key in [arcade.key.RIGHT, arcade.key.A]:
+        elif key in [arcade.key.LEFT, arcade.key.A]:
             self.keys_pressed['left'] = False
         
         self.update_velocity()
