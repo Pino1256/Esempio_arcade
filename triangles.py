@@ -106,6 +106,8 @@ class MyGame(arcade.Window):
         self.time_since_spawn = 0
         self.spawn_rate = 5.0  # Un nemico ogni 5 secondi
         self.shooting_speed = 3.0  # Nemici sparano ogni 3 secondi
+        self.speed_increase_rate = 2.0
+        self.time_since_speed_increase = 0
         
     def get_player_color(self):
         if self.health == 0:
@@ -203,6 +205,13 @@ class MyGame(arcade.Window):
         if self.time_since_spawn >= self.spawn_rate:
             self.enemies.append(Enemy())
             self.time_since_spawn = 0
+        
+        # aumento della velocita
+        self.speed_increase_rate += delta_time
+        if self.speed_increase_rate >= self.speed_increase_rate:
+            self.speed *= 1.10 #aument avelocita
+            self.time_since_speed_increase = 0
+        
 
         # TODO 4: Lo chiamavano flash
         # Nelle righe qui sopra vediamo come fare in modo che "accada qualcosa ogni tot tempo"
