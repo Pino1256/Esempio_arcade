@@ -107,26 +107,32 @@ class MyGame(arcade.Window):
         self.spawn_rate = 5.0  # Un nemico ogni 5 secondi
         self.shooting_speed = 3.0  # Nemici sparano ogni 3 secondi
         
+    def get_player_color(self):
+        if self.health == 0:
+            return arcade.color.BLACK
+        elif self.health == 3:
+            return arcade.color.BLUE
+        elif self.health == 2:
+            return arcade.color.GREEN
+        elif self.health == 1:
+            return arcade.color.YELLOW
+        else:
+            return arcade.color.BLACK
+    
     def on_draw(self):
         """Disegna tutti gli elementi del gioco"""
         self.clear()
-        
+
+        color_personaggio = self.get_player_color()
+
         # Disegna il giocatore (quadrato blu)
         arcade.draw_lrbt_rectangle_filled(
             self.square_x - self.square_size / 2,
             self.square_x + self.square_size / 2,
             self.square_y - self.square_size / 2,
-            self.square_y + self.square_size / 2,
-            arcade.color.BLUE
+            self.square_y + self.square_size / 2,  
+            color_personaggio 
         )
-        
-        # TODO 1: Cambia il colore del quadrato in base alla vita
-        # Suggerimento: Crea una funzione get_player_color() che restituisce:
-        # - BLUE se health == 3
-        # - GREEN se health == 2
-        # - YELLOW se health == 1
-        # - BLACK se non è vivo
-        # Poi usa questo colore invece di arcade.color.BLUE
         
         # Disegna i nemici (triangoli rossi)
         for enemy in self.enemies:
