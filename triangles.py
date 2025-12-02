@@ -87,7 +87,7 @@ class MyGame(arcade.Window):
         self.speed = 200
         self.velocity_x = 0
         self.velocity_y = 0
-        self.health = 0
+        self.health = 3
         self.alive = True
         
         # Input tracking per controlli più fluidi
@@ -152,10 +152,6 @@ class MyGame(arcade.Window):
                         arcade.color.BLACK, 20)
         arcade.draw_text(f"Nemici: {len(self.enemies)}", 10, SCREEN_HEIGHT - 60, 
                         arcade.color.BLACK, 20)
-        
-        # TODO 2: Mostra "GAME OVER" quando il giocatore muore
-        # Suggerimento: Controlla se il giocatore è vivo, poi usa arcade.draw_text
-        # per mostrare "GAME OVER" al centro dello schermo in rosso e grassetto
 
         if self.health == 0:
             arcade.draw_text(
@@ -186,6 +182,12 @@ class MyGame(arcade.Window):
         # TODO 3: Blocca il gioco quando il giocatore muore
         # Suggerimento: All'inizio di questa funzione, controlla se il giocatore è vivo
         # Se è False, usa 'return' per uscire subito e non aggiornare nulla
+
+        if self.health == 0:
+            return
+        
+        self.square_x += self.velocity_x * delta_time
+        self.square_y += self.velocity_y * delta_time
         
         # Aggiorna la posizione del giocatore
         self.square_x += self.velocity_x * delta_time
